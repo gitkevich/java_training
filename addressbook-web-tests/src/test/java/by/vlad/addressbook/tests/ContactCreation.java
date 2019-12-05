@@ -1,6 +1,8 @@
-package by.vlad.addressbook;
+package by.vlad.addressbook.tests;
 
 import java.util.concurrent.TimeUnit;
+
+import by.vlad.addressbook.model.ContactData;
 import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -42,25 +44,25 @@ public class ContactCreation {
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  private void fillContactForm(ContactData contactData) {
+  private void fillContactForm(ContactData cnt) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
+    wd.findElement(By.name("firstname")).sendKeys(cnt.getFirstname());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
+    wd.findElement(By.name("lastname")).sendKeys(cnt.getLastname());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(contactData.getHomenumber());
+    wd.findElement(By.name("home")).sendKeys(cnt.getHomenumber());
     wd.findElement(By.name("email")).click();
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+    wd.findElement(By.name("email")).sendKeys(cnt.getEmail());
     wd.findElement(By.name("company")).click();
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
+    wd.findElement(By.name("company")).sendKeys(cnt.getCompany());
     wd.findElement(By.name("title")).click();
     wd.findElement(By.name("title")).clear();
-    wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
+    wd.findElement(By.name("title")).sendKeys(cnt.getTitle());
   }
 
   private void addContact() {
