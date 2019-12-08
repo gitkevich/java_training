@@ -18,4 +18,8 @@ public class SessionHelper extends HelperBase {
     public void closeAlertWindow(){
         wd.switchTo().alert().accept();
     }
+    public void findCssElement(String element){
+        find(By.cssSelector(element));
+    }
+
 }

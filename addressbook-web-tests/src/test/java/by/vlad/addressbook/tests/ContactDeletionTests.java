@@ -8,6 +8,7 @@ public class ContactDeletionTests extends TestBase {
         app.getContactHelper().selectContact();
         app.getContactHelper().deleteSelectedContact();
         app.getSessionHelper().closeAlertWindow();
+        app.getSessionHelper().findCssElement("div.msgbox");
         app.getNavigationHelper().returnToHome();
 
     }
