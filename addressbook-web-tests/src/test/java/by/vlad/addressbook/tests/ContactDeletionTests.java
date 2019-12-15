@@ -1,6 +1,7 @@
 package by.vlad.addressbook.tests;
 
 import by.vlad.addressbook.model.ContactData;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ContactDeletionTests extends TestBase {
@@ -12,11 +13,17 @@ public class ContactDeletionTests extends TestBase {
             app.getNavigationHelper().returntoHomePage();
         }
 
-        app.getContactHelper().selectContact();
+        int before = app.getContactHelper().getContactCount();
+
+        app.getContactHelper().selectContact(before - 1);
         app.getContactHelper().deleteSelectedContact();
         app.getSessionHelper().closeAlertWindow();
-     //   app.getSessionHelper().findCssElement("div.msgbox");
+        app.getSessionHelper().findCssElement("div.msgbox");
         app.getNavigationHelper().gotoHomePage();
+
+        int after = app.getContactHelper().getContactCount();
+
+        Assert.assertEquals(after, before - 1);
 
     }
 }
