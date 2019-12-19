@@ -4,19 +4,22 @@ import by.vlad.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.List;
+
 
 public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() throws Exception {
-    int before = app.getGroupHelper().getGroupCount();
+
+    List<GroupData> before = app.getGroupHelper().getGroupList();
 
     app.getNavigationHelper().gotoGroupPage();
     app.getGroupHelper().createGroup(new GroupData("Test1", null, null));
 
-    int after = app.getGroupHelper().getGroupCount();
+    List<GroupData> after = app.getGroupHelper().getGroupList();
 
-    Assert.assertEquals(after, before + 1);
+    Assert.assertEquals(after.size(), before.size() + 1);
 
   }
 

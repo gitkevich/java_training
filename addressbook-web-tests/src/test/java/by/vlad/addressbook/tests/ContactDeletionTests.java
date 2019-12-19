@@ -4,6 +4,8 @@ import by.vlad.addressbook.model.ContactData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class ContactDeletionTests extends TestBase {
     @Test
     public void testContactDeletion(){
@@ -13,17 +15,22 @@ public class ContactDeletionTests extends TestBase {
             app.getNavigationHelper().returntoHomePage();
         }
 
-        int before = app.getContactHelper().getContactCount();
+        List<ContactData> before = app.getContactHelper().getContactList();
 
-        app.getContactHelper().selectContact(before - 1);
+        app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().deleteSelectedContact();
         app.getSessionHelper().closeAlertWindow();
         app.getSessionHelper().findCssElement("div.msgbox");
         app.getNavigationHelper().gotoHomePage();
 
-        int after = app.getContactHelper().getContactCount();
+        List<ContactData> after = app.getContactHelper().getContactList();
 
-        Assert.assertEquals(after, before - 1);
+        Assert.assertEquals(after.size(), before.size() - 1);
+
+        Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before, after);
 
     }
 }
