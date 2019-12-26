@@ -76,14 +76,17 @@ public class ContactHelper extends HelperBase{
 
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
+
         for (WebElement element : elements){
-            String name = element.getText();
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+            String firstname = cells.get(2).getText();
+            String lastname = cells.get(1).getText();
             String id = element.findElement(By.tagName("input")).getAttribute("value");
-            ContactData contact = new ContactData(id, name, null, null, null, null, null, null);
+            ContactData contact = new ContactData(id, firstname, lastname, null, null, null, null, null);
             contacts.add(contact);
         }
-        return contacts;
 
+        return contacts;
 
     }
 }
