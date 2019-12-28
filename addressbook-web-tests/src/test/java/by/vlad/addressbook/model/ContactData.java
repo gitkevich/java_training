@@ -1,7 +1,7 @@
 package by.vlad.addressbook.model;
 
 public class ContactData {
-    private final String id;
+    private int id;
     private final String firstname;
     private final String lastname;
     private final String homenumber;
@@ -9,7 +9,7 @@ public class ContactData {
     private final String company;
     private final String title;
 
-    public ContactData(String id, String firstname, String lastname, String homenumber, String email, String company, String title, String group) {
+    public ContactData(int id, String firstname, String lastname, String homenumber, String email, String company, String title, String group) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -20,9 +20,8 @@ public class ContactData {
         this.group = group;
     }
 
-
     public ContactData(String firstname, String lastname, String homenumber, String email, String company, String title, String group) {
-        this.id = null;
+        this.id = Integer.MAX_VALUE;
         this.firstname = firstname;
         this.lastname = lastname;
         this.homenumber = homenumber;
@@ -32,6 +31,10 @@ public class ContactData {
         this.group = group;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -39,18 +42,18 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
         return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+        int result = firstname != null ? firstname.hashCode() : 0;
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
+
+
 
     @Override
     public String toString() {
@@ -63,10 +66,9 @@ public class ContactData {
 
     private String group;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
-
 
 
     public String getFirstname() {
