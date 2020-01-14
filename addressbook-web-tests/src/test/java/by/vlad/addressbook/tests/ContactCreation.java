@@ -1,12 +1,10 @@
 package by.vlad.addressbook.tests;
 
 import by.vlad.addressbook.model.ContactData;
-import by.vlad.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreation extends TestBase {
@@ -17,7 +15,7 @@ public class ContactCreation extends TestBase {
 
     ContactData contact = new ContactData("John", "Smith", "487334564", "jsmith@gmail.com", "Tesla Corp", "Engineer", "Test1");
     app.getContactHelper().createContact(contact, true);
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
 
     List<ContactData> after = app.getContactHelper().getContactList();
 

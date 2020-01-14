@@ -12,7 +12,7 @@ public class ContactDeletionTests extends TestBase {
 
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("John", "Smith", "487334564", "jsmith@gmail.com", "Tesla Corp", "Engineer", "Test1"), true);
-            app.getNavigationHelper().returntoHomePage();
+            app.goTo().returntoHomePage();
         }
 
         List<ContactData> before = app.getContactHelper().getContactList();
@@ -21,7 +21,7 @@ public class ContactDeletionTests extends TestBase {
         app.getContactHelper().deleteSelectedContact();
         app.getSessionHelper().closeAlertWindow();
         app.getSessionHelper().findCssElement("div.msgbox");
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().gotoHomePage();
 
         List<ContactData> after = app.getContactHelper().getContactList();
 
